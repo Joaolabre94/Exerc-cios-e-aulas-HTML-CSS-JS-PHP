@@ -1,0 +1,19 @@
+header{
+    background-color: yellow;
+    background-image: url(https://img.freepik.com/vetores-gratis/fundo-bonito-da-noite_1108-51.jpg);
+}
+main{
+    height: 600px;
+}
+nav{
+    background-color: pink;
+}
+main{
+    background-color: gray;
+}
+aside{
+    background-color: pink;
+}
+footer{
+    background-color: yellow;
+}

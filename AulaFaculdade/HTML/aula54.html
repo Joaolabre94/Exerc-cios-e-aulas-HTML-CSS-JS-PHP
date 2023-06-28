@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Compras</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    
+    input[type="text"] {
+      width: 200px;
+    }
+    
+    input[type="submit"] {
+      margin-top: 10px;
+    }
+    
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+    }
+    
+    #buttons {
+      margin-top: 10px;
+    }
+    
+    #buttons button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Compras</h1>
+  <form id="formLista">
+    <label for="item">Item:</label>
+    <input type="text" id="item">
+    <input type="submit" value="Inserir">
+  </form>
+  <div id="buttons">
+    <button id="apagar">Apagar</button>
+    <button id="listar">Listar</button>
+    <button id="sair">Sair</button>
+  </div>
+  <div id="output"></div>
+
+  <script>
+    function listaMercado() {
+      const lista = [];
+      const formLista = document.getElementById("formLista");
+      const output = document.getElementById("output");
+      const apagarButton = document.getElementById("apagar");
+      const listarButton = document.getElementById("listar");
+      const sairButton = document.getElementById("sair");
+      
+      formLista.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const itemInput = document.getElementById("item");
+        const item = itemInput.value.trim();
+        if (item) {
+          lista.push(item);
+          output.innerHTML = "Item inserido na lista";
+          itemInput.value = "";
+        }
+      });
+      
+      apagarButton.addEventListener("click", function() {
+        if (lista.length === 0) {
+          output.innerHTML = "A lista está vazia.";
+        } else {
+          const indice = parseInt(prompt("Escolha um índice para apagar:"));
+          if (indice >= 0 && indice < lista.length) {
+            lista.splice(indice, 1);
+          } else {
+            output.innerHTML = "Índice inválido. Tente novamente.";
+          }
+        }
+      });
+      
+      listarButton.addEventListener("click", function() {
+        if (lista.length === 0) {
+          output.innerHTML = "A lista está vazia.";
+        } else {
+          let html = "<strong>Lista de compras:</strong><br>";
+          lista.forEach((item, indice) => {
+            html += `${indice} - ${item}<br>`;
+          });
+          output.innerHTML = html;
+        }
+      });
+      
+      sairButton.addEventListener("click", function() {
+        let html = "<strong>Você saiu do programa. Sua lista ficou assim:</strong><br>";
+        lista.forEach((item, indice) => {
+          html += `${indice} - ${item}<br>`;
+        });
+        output.innerHTML = html;
+        formLista.removeEventListener("submit", null);
+        apagarButton.removeEventListener("click", null);
+        listarButton.removeEventListener("click", null);
+        sairButton.removeEventListener("click", null);
+      });
+    }
+
+    listaMercado();
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Não sei</h2>
+    <div>
+        <label for="texto">idade : 25, nome : 'Ana'</label><br><br>
+        <label for="texto">idade : 43, nome :'Carlos'</label><br><br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+    <div id="c1"></div>
+    <script>
+        function alterar(){
+            let pessoas = [{ idade : 25, nome : 'Ana'},
+                            { idade : 43, nome :'Carlos'}];
+            let objeto = document.getElementById('c1');
+            let texto = " ";
+            
+            for (const x of pessoas){
+                console.log(x);
+                texto = ` ${x['nome']} tem ${x ['idade']} ano(s) `;
+            }
+            objeto.innerHTML = texto;
+        }
+    </script>
+</body>
+</html>

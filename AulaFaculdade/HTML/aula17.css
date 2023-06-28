@@ -1,0 +1,36 @@
+body{
+    background-color: rgb(233, 203, 203);
+    background-image: url(https://img.freepik.com/vetores-gratis/fundo-bonito-da-noite_1108-51.jpg);
+    line-height:3;
+    padding: 53px;
+}
+fieldset{
+    background-color: blanchedalmond;
+    font-size: 20px;
+    
+}
+label{
+    background-color: aquamarine;
+    font-size: 25px;
+}
+input{
+    background-color: rgb(231, 186, 230);
+    font-size: 25px;
+}
+legend{
+    font-size: 35px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+button{
+    font-size: 12px;
+    color: aqua;
+    background-color: blue;
+    border-radius: 100px 0px 100px;
+    border-color: rgb(212, 39, 39);  
+    line-height: 1.5
+}
+input:hover{
+    color: aquamarine;
+}
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      h1 {
+        text-align: center;
+      }
+      
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      
+      input[type="text"] {
+        width: 200px;
+      }
+      
+      input[type="submit"] {
+        margin-top: 10px;
+      }
+      
+      #output {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de Compras</h1>
+    <form id="formLista">
+      <label for="opcao">Selecione uma opção:</label>
+      <input type="text" id="opcao" placeholder="[i]nserir [a]pagar [l]istar [s]air">
+      <input type="submit" value="Executar">
+    </form>
+    <div id="output"></div>
+  
+    <script>
+      function listaMercado() {
+        const lista = [];
+        const formLista = document.getElementById("formLista");
+        const output = document.getElementById("output");
+        
+        formLista.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const selecao = document.getElementById("opcao").value.toLowerCase();
+          
+          if (selecao.includes("i")) {
+            const item = prompt("Item:");
+            if (item) {
+              lista.push(item);
+              output.innerHTML = "Item inserido na lista";
+            }
+          } else if (selecao.includes("a")) {
+            if (lista.length === 0) {
+              output.innerHTML = "A lista está vazia.";
+            } else {
+              const indice = parseInt(prompt("Escolha um índice para apagar:"));
+              if (indice >= 0 && indice < lista.length) {
+                lista.splice(indice, 1);
+              } else {
+                output.innerHTML = "Índice inválido. Tente novamente.";
+              }
+            }
+          } else if (selecao.includes("l")) {
+            if (lista.length === 0) {
+              output.innerHTML = "A lista está vazia.";
+            } else {
+              let html = "<strong>Lista de compras:</strong><br>";
+              lista.forEach((item, indice) => {
+                html += `${indice} - ${item}<br>`;
+              });
+              output.innerHTML = html;
+            }
+          } else if (selecao.includes("s")) {
+            let html = "<strong>Você saiu do programa. Sua lista ficou assim:</strong><br>";
+            lista.forEach((item, indice) => {
+              html += `${indice} - ${item}<br>`;
+            });
+            output.innerHTML = html;
+            formLista.removeEventListener("submit", null);
+          } else {
+            output.innerHTML = "Opção inválida. Tente novamente.";
+          }
+          
+          formLista.reset();
+        });
+      }
+  
+      listaMercado();
+    </script>
+  </body>
+  </html>
